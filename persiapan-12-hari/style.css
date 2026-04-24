@@ -1,0 +1,666 @@
+/* ============================================================
+   SNBT 12-HARI STUDY GUIDE — Print-Ready Stylesheet
+   Optimized for: pandoc → HTML → Chromium print-to-PDF
+   Design principles:
+   - Color-coded sections for memory association
+   - Clear visual hierarchy
+   - Generous whitespace for readability
+   - Print-optimized (A4, page breaks, no orphans)
+   ============================================================ */
+
+/* --- CSS Variables / Color System --- */
+:root {
+  /* Primary palette — memory association colors */
+  --blue:        #1a73e8;
+  --blue-light:  #e8f0fe;
+  --blue-border: #4a90d9;
+
+  --green:        #1e8e3e;
+  --green-light:  #e6f4ea;
+  --green-border: #34a853;
+
+  --orange:        #e37400;
+  --orange-light:  #fef3e0;
+  --orange-border: #f9ab00;
+
+  --red:          #d93025;
+  --red-light:    #fce8e6;
+  --red-border:   #ea4335;
+
+  --purple:        #7b1fa2;
+  --purple-light:  #f3e8fd;
+  --purple-border: #ab47bc;
+
+  --teal:         #00897b;
+  --teal-light:   #e0f2f1;
+  --teal-border:  #26a69a;
+
+  /* Neutral palette */
+  --text:         #1a1a2e;
+  --text-secondary: #555770;
+  --bg:           #ffffff;
+  --bg-subtle:    #f8f9fa;
+  --border:       #dadce0;
+  --border-dark:  #bdc1c6;
+
+  /* Typography */
+  --font-body:  'Noto Sans', 'Liberation Sans', system-ui, sans-serif;
+  --font-head:  'Noto Sans', 'Liberation Sans', system-ui, sans-serif;
+  --font-mono:  'Liberation Mono', 'Noto Sans Mono', 'Courier New', monospace;
+}
+
+/* --- Base Reset & Typography --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 11pt;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  margin: 0;
+  padding: 2cm 2.2cm;
+  max-width: none;
+  counter-reset: tip-counter warning-counter;
+}
+
+/* --- Headings --- */
+h1 {
+  font-family: var(--font-head);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--blue);
+  border-bottom: 4px solid var(--blue);
+  padding-bottom: 0.5rem;
+  margin-top: 0;
+  margin-bottom: 0.3rem;
+  letter-spacing: -0.02em;
+  page-break-after: avoid;
+}
+
+/* Subtitle (second h1 or first h1 after the day number) */
+h1 + h1 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--bg);
+  background: var(--blue);
+  padding: 0.5rem 1rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  page-break-after: avoid;
+}
+
+/* Alternate h2 colors by position for visual variety */
+h2:nth-of-type(2) { background: var(--teal); }
+h2:nth-of-type(3) { background: var(--purple); }
+h2:nth-of-type(4) { background: var(--green); }
+h2:nth-of-type(5) { background: var(--orange); }
+h2:nth-of-type(6) { background: var(--blue); }
+h2:nth-of-type(7) { background: var(--teal); }
+h2:nth-of-type(8) { background: var(--purple); }
+h2:nth-of-type(9) { background: var(--green); }
+h2:nth-of-type(10) { background: var(--orange); }
+h2:nth-of-type(11) { background: var(--blue); }
+h2:nth-of-type(12) { background: var(--teal); }
+
+h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--purple);
+  border-left: 4px solid var(--purple);
+  padding-left: 0.75rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.6rem;
+  page-break-after: avoid;
+}
+
+h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 1.2rem;
+  margin-bottom: 0.4rem;
+  page-break-after: avoid;
+}
+
+/* --- Paragraphs & Inline --- */
+p {
+  margin-top: 0.4rem;
+  margin-bottom: 0.6rem;
+  orphans: 3;
+  widows: 3;
+}
+
+strong {
+  color: var(--red);
+  font-weight: 700;
+}
+
+em {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* --- Links (for digital version) --- */
+a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+/* --- Blockquotes — styled as highlight/callout boxes --- */
+blockquote {
+  background: linear-gradient(135deg, var(--blue-light) 0%, #f0f6ff 100%);
+  border-left: 5px solid var(--blue);
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.2rem;
+  margin: 1rem 0;
+  font-style: normal;
+  position: relative;
+  page-break-inside: avoid;
+}
+
+blockquote::before {
+  content: "\201C";
+  font-size: 3rem;
+  color: var(--blue-border);
+  position: absolute;
+  top: -0.2rem;
+  left: 0.4rem;
+  opacity: 0.3;
+  font-family: Georgia, serif;
+}
+
+blockquote p {
+  margin: 0.3rem 0;
+  padding-left: 1.5rem;
+  font-weight: 500;
+}
+
+blockquote blockquote {
+  background: var(--green-light);
+  border-left-color: var(--green);
+}
+
+blockquote blockquote::before {
+  color: var(--green-border);
+}
+
+/* --- Lists --- */
+ul, ol {
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+li {
+  margin-bottom: 0.3rem;
+  line-height: 1.55;
+}
+
+li > ul, li > ol {
+  margin-top: 0.2rem;
+}
+
+/* Checkbox-style lists */
+li > p:first-child {
+  margin: 0;
+}
+
+/* --- Tables — clean, colored headers, alternating rows --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.88rem;
+  page-break-inside: auto;
+}
+
+thead {
+  display: table-header-group;
+}
+
+tr {
+  page-break-inside: avoid;
+}
+
+thead tr {
+  background: var(--blue);
+  color: white;
+}
+
+thead th {
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--blue);
+}
+
+tbody td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--bg-subtle);
+}
+
+tbody tr:hover {
+  background: var(--blue-light);
+}
+
+/* Smaller, compact tables */
+table + table {
+  margin-top: 0.5rem;
+}
+
+/* --- Code Blocks — styled as distinct visual areas --- */
+pre {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  margin: 0.8rem 0;
+  border: 1px solid #313244;
+  page-break-inside: avoid;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--bg-subtle);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  color: var(--red);
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* --- Details/Summary — rendered as visible answer boxes --- */
+details {
+  background: var(--green-light);
+  border: 2px solid var(--green-border);
+  border-radius: 8px;
+  padding: 0;
+  margin: 0.8rem 0;
+  page-break-inside: avoid;
+  overflow: hidden;
+}
+
+summary {
+  background: var(--green);
+  color: white;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+summary::before {
+  content: "KUNCI";
+  background: white;
+  color: var(--green);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+details > *:not(summary) {
+  padding: 0 1rem;
+}
+
+details > p:last-child,
+details > ol:last-child,
+details > ul:last-child {
+  padding-bottom: 0.8rem;
+}
+
+/* For print: force details open */
+@media print {
+  details {
+    display: block !important;
+  }
+  details[open] > summary,
+  details > summary {
+    display: flex;
+  }
+  details > *:not(summary) {
+    display: block !important;
+  }
+}
+
+/* --- Horizontal Rules — section dividers --- */
+hr {
+  border: none;
+  border-top: 2px dashed var(--border);
+  margin: 1.5rem 0;
+}
+
+/* --- Special Content Patterns --- */
+
+/* Checklist styling */
+ul li:has(input[type="checkbox"]) {
+  list-style: none;
+  margin-left: -1.5rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+}
+
+input[type="checkbox"] {
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 0.5em;
+  accent-color: var(--green);
+  vertical-align: middle;
+}
+
+/* --- Visual Memory Aids --- */
+
+/* Colored boxes for specific content patterns */
+
+/* Text starting with emoji indicators */
+/* Tip/strategy boxes detected by content */
+
+/* Tables with specific headers get different colors */
+table:has(th:first-child:empty) thead tr,
+table:has(th:first-child) thead tr {
+  background: var(--blue);
+}
+
+/* Vocabulary tables - make them visually distinct */
+
+/* --- Page Break Controls --- */
+h1 {
+  page-break-before: always;
+}
+
+/* Don't break before the very first h1 */
+body > h1:first-child,
+body > :first-child h1,
+header + h1,
+body > :first-child {
+  page-break-before: avoid;
+}
+
+/* Hide the pandoc auto-generated header block (title metadata) */
+header#title-block-header {
+  display: none;
+}
+
+h2, h3, h4 {
+  page-break-after: avoid;
+}
+
+table, pre, blockquote, details {
+  page-break-inside: avoid;
+}
+
+/* Allow large tables to break */
+table.allow-break {
+  page-break-inside: auto;
+}
+
+/* --- Header/Footer for Print --- */
+@page {
+  size: A4;
+  margin: 1.8cm 2cm 2cm 2cm;
+
+  @top-right {
+    content: "Persiapan SNBT 2026";
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 8pt;
+    color: #999;
+  }
+
+  @bottom-center {
+    content: counter(page);
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 9pt;
+    color: #666;
+  }
+}
+
+@page :first {
+  @top-right {
+    content: none;
+  }
+}
+
+/* --- Special Elements --- */
+
+/* Motivational / highlight boxes
+   Triggered by blockquote containing specific keywords */
+
+/* ASCII art boxes in code blocks */
+pre:has(code) {
+  position: relative;
+}
+
+/* Big framed boxes (like the motivational box on day 12) */
+
+/* --- Utility Classes (applied via pandoc filters or manually) --- */
+
+/* Color-coded section markers */
+.blue    { color: var(--blue); }
+.green   { color: var(--green); }
+.orange  { color: var(--orange); }
+.red     { color: var(--red); }
+.purple  { color: var(--purple); }
+
+/* Info/Warning/Tip callout boxes */
+.info-box {
+  background: var(--blue-light);
+  border: 2px solid var(--blue-border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.tip-box {
+  background: var(--green-light);
+  border: 2px solid var(--green-border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.warn-box {
+  background: var(--orange-light);
+  border: 2px solid var(--orange-border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.danger-box {
+  background: var(--red-light);
+  border: 2px solid var(--red-border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* --- Progress bar visualization --- */
+.progress-bar {
+  display: flex;
+  height: 0.8rem;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--border);
+}
+
+/* --- Responsive (for screen viewing before printing) --- */
+@media screen {
+  body {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+  }
+
+  details {
+    cursor: pointer;
+  }
+}
+
+/* --- Print-specific overrides --- */
+@media print {
+  body {
+    padding: 0;
+    font-size: 10.5pt;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  h3 {
+    font-size: 0.95rem;
+  }
+
+  pre {
+    font-size: 0.78rem;
+    padding: 0.7rem 1rem;
+    background: #f5f5f5 !important;
+    color: #1a1a2e !important;
+    border: 1px solid var(--border-dark);
+  }
+
+  pre code {
+    color: #1a1a2e !important;
+  }
+
+  table {
+    font-size: 0.82rem;
+  }
+
+  blockquote {
+    background: var(--blue-light) !important;
+  }
+
+  a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  a[href^="http"]:after {
+    content: none;
+  }
+
+  /* Prevent color loss in print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+/* --- Cover Page Styles (for the overview document) --- */
+.cover {
+  text-align: center;
+  padding-top: 6cm;
+  page-break-after: always;
+}
+
+.cover h1 {
+  font-size: 2.5rem;
+  border: none;
+  color: var(--blue);
+  page-break-before: avoid;
+}
+
+.cover h2 {
+  background: none;
+  color: var(--text-secondary);
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+/* --- Checkbox print improvement --- */
+@media print {
+  input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0.9em;
+    height: 0.9em;
+    border: 2px solid var(--border-dark);
+    border-radius: 3px;
+    margin-right: 0.4em;
+    vertical-align: middle;
+    display: inline-block;
+  }
+}
+
+/* --- Arabic/RTL text support (for doa) --- */
+[lang="ar"], .arabic {
+  direction: rtl;
+  font-size: 1.3rem;
+  line-height: 2;
+  text-align: right;
+  font-family: 'Noto Naskh Arabic', 'Noto Sans Arabic', serif;
+}
+
+/* --- Final touches --- */
+
+/* Smooth gradient on the day title area */
+h1 + h1 + blockquote {
+  background: linear-gradient(135deg, var(--purple-light) 0%, var(--blue-light) 100%);
+  border-left-color: var(--purple);
+}
+
+h1 + h1 + blockquote::before {
+  content: "\2605"; /* star */
+  color: var(--purple);
+}
+
+/* Make the CHECKLIST section visually distinct */
+h2:last-of-type {
+  background: var(--green) !important;
+}
+
+/* Signature footer */
+body::after {
+  content: "";
+  display: block;
+  margin-top: 2rem;
+}

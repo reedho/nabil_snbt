@@ -1,0 +1,46 @@
+# Build outputs from any build script
+build/
+dist/
+out/
+output/
+_combined.md
+_build/
+
+# Generated documents
+*.pdf
+*.html
+!rencana-cadangan/**/*.md
+
+# Preview/screenshot artifacts
+preview*.png
+*-preview.png
+final-preview.*
+
+# Temp / scratch
+temp/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.sublime-*
+
+# Node / tooling (if any)
+node_modules/
+.cache/
+
+# Local env
+.env
+.env.local
+
+# Large source PDFs (tryouts) — exclude by default, uncomment to commit
+schoology_tryout_09/
+schoology_tryout_10/
+schoology-pdf/
+*.zip
