@@ -14,6 +14,7 @@ Rencana paralel untuk Nabil jika hasil SNBT 2026 tidak sesuai harapan.
 3. **[03-ielts-6-bulan/](03-ielts-6-bulan/)** — Persiapan IELTS 6 bulan (foundation untuk jalur 1 & 2)
 4. **[04-snbt-2027/](04-snbt-2027/)** — Opsi akhir: SNBT ulang 2027
 5. **[05-gap-year/](05-gap-year/)** — Rutinitas harian supaya gap year produktif
+6. **[06-beasiswa-dalam-negeri-2026.md](06-beasiswa-dalam-negeri-2026.md)** — Beasiswa S1 Indonesia masih buka (OSC, Tel-U, DDTC, dll)
 
 ## Timeline Kritis
 
